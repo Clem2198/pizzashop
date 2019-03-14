@@ -1,5 +1,5 @@
 package edu.psu.ist;
-
+//add name, and phone number of customer
 public class Customer {
     //Class Level Variables - Protect the data
     private int customerId;
