@@ -2,6 +2,8 @@ package edu.psu.ist;
 
 import java.util.ArrayList;
 
+//add quantity, delivery, base pizza, and toppings
+
 public class Menu {
 
     //Class Level Variables - Protect the data
