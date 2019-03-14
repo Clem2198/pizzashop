@@ -16,6 +16,18 @@ public class Main {
 
     public static void main(String[] args) {
 
+        System.out.println("Welcome to Fratellos Pizza Shop");
+        System.out.println(" ____                   \n" +
+                "/    \\\t\t\t\n" +
+                "  u  u|      _______    \n" +
+                "    \\ |  .-''#%&#&%#``-.   \n" +
+                "   = /  ((%&#&#&%&VK&%&))  \n" +
+                "    |    `-._#%&##&%_.-'   \n" +
+                " /\\/\\`--.   `-.\"\".-'\n" +
+                " |  |    \\   /`./          \n" +
+                " |\\/|  \\  `-'  /\n" +
+                " || |   \\     /            ");
+
         final char EXIT_CODE = 'E';
         final char CUST_CODE = 'C';
         final char MENU_CODE = 'M';
@@ -23,6 +35,7 @@ public class Main {
         final char TRAN_CODE = 'T';
         final char HELP_CODE = '?';
         char userAction;
+        System.out.println("Look at the menu options below");
         final String PROMPT_ACTION = "Add 'C'ustomer, List 'M'enu, Add 'O'rder, List 'T'ransaction or 'E'xit: ";
         ArrayList<Customer> cList = new ArrayList<>();
         ArrayList<Menu> mList = new ArrayList<>();
