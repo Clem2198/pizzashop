@@ -2,18 +2,20 @@ package com.company;
 
 public class Order {
     //Class Level Variables - Protect the data
-    private int orderId;
+    private int orderId = 0;
     private Customer cust;
     private String orderMenuItem;
     private double orderMenuPrice;
 
     //Constructor Method
-    public Order(int _orderId, String _orderMenuItem, double _orderMenuPrice){
-        this.orderId = _orderId;
+    public Order(String _orderMenuItem, double _orderMenuPrice){
+        orderId++;
         this.orderMenuItem = _orderMenuItem;
         this.orderMenuPrice = _orderMenuPrice;
     }
-
+    public Order(){
+        orderId++;
+    }
     //Setters and Getters
     public int getorderId() { return orderId; }
     public void setorderId(int _orderId) {this.orderId = _orderId;}
@@ -23,5 +25,6 @@ public class Order {
 
     public double getorderMenuPrice() { return orderMenuPrice;}
     public void setOrderMenuPrice(double _orderMenuPrice) {this.orderMenuPrice=_orderMenuPrice;}
+
 
 }
