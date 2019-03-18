@@ -1,13 +1,5 @@
-package edu.psu.ist;
-/*
-Project: Lab 9
-Purpose Details: Pizza ordering application
-Course: IST 242
-Author: Joe Oakes
-Date Developed: 3/14/19
-Last Date Changed: 3/13/19
-Rev: 2
- */
+package com.company;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -42,9 +34,9 @@ public class Main {
         ArrayList<Order> oList = new ArrayList<>();
         ArrayList<Transaction> tList = new ArrayList<>();
 
-        Customer cust1 = new Customer(1);
-        Order order1 = new Order(1);
-        Transaction trans1 = new Transaction(1);
+
+
+
 
         Menu menu1 = new Menu(1, "Plain", 8.25);
         Menu menu2 = new Menu(2, "Meat", 9.00);
@@ -56,24 +48,47 @@ public class Main {
         mList.add(menu3);
         mList.add(menu4);
 
-        cList.add(cust1);
-        oList.add(order1);
-        tList.add(trans1);
 
         userAction = getAction(PROMPT_ACTION);
 
         while (userAction != EXIT_CODE) {
             switch(userAction) {
-                case CUST_CODE : //addCustomer();
+                case CUST_CODE : Customer.listCustomer(cList);//addCustomer();
+                    Scanner custName = new Scanner(System.in);
+                    System.out.println("Please enter (customer's) name");
+                    String customer1 = custName.next();
+                    Scanner custPhone = new Scanner(System.in);
+                    System.out.println("Please enter (customer's) phone number");
+                    String custPhone1 = custPhone.next();
+                    String number = custPhone1.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3");
+                    Customer cust1 = new Customer (1, customer1, number);
+                    cList.add(cust1);
                     break;
                 case MENU_CODE : Menu.listMenu(mList);
                     break;
                 case ORDE_CODE : //addOrders();
+                    Scanner orderTime = new Scanner(System.in);
+                    System.out.println("What would you like to order?");
+                    String orderCust1 = orderTime.next().toLowerCase();
+                    double price = mList.get(0).getMenuPrice();
+                    System.out.print("How many pizzas would you like: ");
+                    int pizzaCount = orderTime.nextInt();
+                    price = price * pizzaCount;
+                    System.out.println("Total: " + price);
+                    Order order1 = new Order(1, orderCust1,price);
+                    oList.add(order1);
                     break;
                 case TRAN_CODE : //listTransactions();
+                    
+                    Transaction trans1 = new Transaction(1, PaymentType.cash);
+                    tList.add(trans1);
+                    for (Transaction trans: tList) {
+                        System.out.println("Transaction ID: " + trans.getTransactionId());
+                        //System.out.println("Order:" + trans.getOrder());  //TODO: Print order
+                        System.out.println("Payment Type: " + trans.getPaymentType());
+                    }
                     break;
             }
-
             userAction = getAction(PROMPT_ACTION);
         }
     }
