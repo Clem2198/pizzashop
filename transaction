@@ -7,15 +7,17 @@ enum PaymentType {cash, credit}
 public class Transaction {
 
     //Class Level Variables - Protect the data
-    private int transactionId;
+    private int transactionId = 0;
     private PaymentType pType;
 
     //Constructor Method
-    public Transaction(int _transactionId, PaymentType _pType){
-        this.transactionId = _transactionId;
+    public Transaction(PaymentType _pType){
+        transactionId++;
         this.pType = _pType;
     }
-
+    public Transaction(){
+        transactionId++;
+    }
     //Setters and Getters
     public int getTransactionId() { return transactionId; }
     public void setTransactionId(int _transactionId) {this.transactionId = _transactionId;}
@@ -24,12 +26,6 @@ public class Transaction {
     public PaymentType getPaymentType() { return pType; }
     public void setPaymentType(PaymentType _pType) {this.pType = _pType;}
 
-    public static void listTransactions(ArrayList<Transaction> tList){
-        for (Transaction trans: tList){
-            System.out.println("Transaction ID: " + trans.getTransactionId());
-            //System.out.println("Order:" + trans.getOrder());  //TODO: Print order
-            System.out.println("Payment Type: " + trans.getPaymentType());
-        }
-    }
+
 
 }
