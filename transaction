@@ -1,17 +1,35 @@
-package edu.psu.ist;
+package com.company;
+
+import java.util.ArrayList;
+
+enum PaymentType {cash, credit}
 
 public class Transaction {
 
     //Class Level Variables - Protect the data
     private int transactionId;
+    private PaymentType pType;
 
     //Constructor Method
-    public Transaction(int _transactionId){
+    public Transaction(int _transactionId, PaymentType _pType){
         this.transactionId = _transactionId;
+        this.pType = _pType;
     }
 
     //Setters and Getters
     public int getTransactionId() { return transactionId; }
     public void setTransactionId(int _transactionId) {this.transactionId = _transactionId;}
+
+
+    public PaymentType getPaymentType() { return pType; }
+    public void setPaymentType(PaymentType _pType) {this.pType = _pType;}
+
+    public static void listTransactions(ArrayList<Transaction> tList){
+        for (Transaction trans: tList){
+            System.out.println("Transaction ID: " + trans.getTransactionId());
+            //System.out.println("Order:" + trans.getOrder());  //TODO: Print order
+            System.out.println("Payment Type: " + trans.getPaymentType());
+        }
+    }
 
 }
