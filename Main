@@ -1,5 +1,14 @@
 package com.company;
 
+/*
+Project: Lab 9
+Purpose Details: Pizza ordering application
+Course: IST 242
+Author: Christian Lemmo
+Date Developed: 3/17/2019
+Last Date Changed: 3/17/19
+Rev: 4
+ */
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -38,10 +47,10 @@ public class Main {
 
 
 
-        Menu menu1 = new Menu(1, "Plain", 8.25);
-        Menu menu2 = new Menu(2, "Meat", 9.00);
+        Menu menu1 = new Menu(1, "Plain", 8.75);
+        Menu menu2 = new Menu(2, "Meat", 9.75);
         Menu menu3 = new Menu(3, "Extra", 8.75);
-        Menu menu4 = new Menu(4, "Veg", 9.50);
+        Menu menu4 = new Menu(4, "Veg", 9.75);
 
         mList.add(menu1);
         mList.add(menu2);
@@ -61,7 +70,10 @@ public class Main {
                     System.out.println("Please enter (customer's) phone number");
                     String custPhone1 = custPhone.next();
                     String number = custPhone1.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3");
-                    Customer cust1 = new Customer (1, customer1, number);
+                    for (Order ord: oList){
+                        System.out.println("Order ID: " + ord.getorderId());
+                    }
+                    Customer cust1 = new Customer (customer1, number);
                     cList.add(cust1);
                     break;
                 case MENU_CODE : Menu.listMenu(mList);
@@ -75,13 +87,25 @@ public class Main {
                     int pizzaCount = orderTime.nextInt();
                     price = price * pizzaCount;
                     System.out.println("Total: " + price);
-                    Order order1 = new Order(1, orderCust1,price);
+                    Order order1 = new Order(orderCust1,price);
                     oList.add(order1);
                     break;
                 case TRAN_CODE : //listTransactions();
-                    
-                    Transaction trans1 = new Transaction(1, PaymentType.cash);
-                    tList.add(trans1);
+                    Scanner cshoCrd = new Scanner(System.in);
+                    System.out.println("Cash or Credit?");
+                    String paymentTpe = cshoCrd.next().toLowerCase();
+                    if (paymentTpe == "cash"){
+                        Transaction trans1 = new Transaction(PaymentType.cash);
+                        tList.add(trans1);
+                    }
+                    else if (paymentTpe == "credit"){
+                        Transaction trans1 = new Transaction(PaymentType.credit);
+                        tList.add(trans1);
+                    }
+                    //else {(!paymentTpe.equals("cash") || !paymentTpe.equals("credit")){
+                     //   System.out.println("Please retype the method of payment: ");
+                      //  paymentTpe = cshoCrd.next().toLowerCase();
+                    //} }
                     for (Transaction trans: tList) {
                         System.out.println("Transaction ID: " + trans.getTransactionId());
                         //System.out.println("Order:" + trans.getOrder());  //TODO: Print order
