@@ -5,18 +5,20 @@ import java.util.ArrayList;
 //add name, and phone number of customer
 public class Customer {
     //Class Level Variables - Protect the data
-    private int customerId;
+    private int customerId = 0;
     private String customerName;
     private String customerPhone;
 
     //Constructor Method
-    public Customer(int _customerId, String _customerName, String _customerPhone) {
-        this.customerId = _customerId;
+    public Customer(String _customerName, String _customerPhone) {
+        customerId++;
         this.customerName = _customerName;
         this.customerPhone = _customerPhone;
     }
 
     public Customer() {
+        customerId++;  //Increments the ID count
+
     }
 
     //Setters and Getters
