@@ -3,6 +3,7 @@ package com.company;
 import java.util.ArrayList;
 
 //add quantity, delivery, base pizza, and toppings
+//add sizes of pizza
 
 public class Menu {
 
