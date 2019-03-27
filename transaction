@@ -2,7 +2,7 @@ package com.company;
 
 import java.util.ArrayList;
 
-enum PaymentType {cash, credit}
+enum PaymentType {cash, credit, debit, paypal}
 
 public class Transaction {
 
