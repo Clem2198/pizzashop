@@ -1,0 +1,20 @@
+package com.company;
+
+public class Delivery {
+    //Class Level Variables - Protect the data
+    private int deliveryCost;
+
+
+    //Constructor Method
+    public Delivery(int _deliveryCost){
+        this.deliveryCost = _deliveryCost;
+    }
+
+    //Setters and Getters
+    public int getDeliveryCost() {
+        return deliveryCost;
+    }
+    public void setDeliveryCost(int _deliveryCost) { this.deliveryCost = _deliveryCost;
+    }
+
+}
