@@ -6,9 +6,10 @@ Purpose Details: Pizza ordering application
 Course: IST 242
 Author: Christian Lemmo
 Date Developed: 3/17/2019
-Last Date Changed: 3/17/19
-Rev: 4
+Last Date Changed: 3/26/19
+Rev: 6
  */
+//fix delivery options, create discount class, and then also figure out how to match user input to make sure it matches with menu items
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -35,9 +36,10 @@ public class Main {
         final char ORDE_CODE = 'O';
         final char TRAN_CODE = 'T';
         final char HELP_CODE = '?';
+        final char DELV_CODE = 'D';
         char userAction;
         System.out.println("Look at the menu options below");
-        final String PROMPT_ACTION = "Add 'C'ustomer, List 'M'enu, Add 'O'rder, List 'T'ransaction or 'E'xit: ";
+        final String PROMPT_ACTION = "Add 'C'ustomer, List 'M'enu, Add 'O'rder, List 'T'ransaction, List 'D'elivery or 'E'xit: ";
         ArrayList<Customer> cList = new ArrayList<>();
         ArrayList<Menu> mList = new ArrayList<>();
         ArrayList<Order> oList = new ArrayList<>();
@@ -62,7 +64,8 @@ public class Main {
 
         while (userAction != EXIT_CODE) {
             switch(userAction) {
-                case CUST_CODE : Customer.listCustomer(cList);//addCustomer();
+                case CUST_CODE:
+                    Customer.listCustomer(cList);//addCustomer();
                     Scanner custName = new Scanner(System.in);
                     System.out.println("Please enter (customer's) name");
                     String customer1 = custName.next();
@@ -70,27 +73,53 @@ public class Main {
                     System.out.println("Please enter (customer's) phone number");
                     String custPhone1 = custPhone.next();
                     String number = custPhone1.replaceFirst("(\\d{3})(\\d{3})(\\d+)", "($1) $2-$3");
-                    for (Order ord: oList){
+                    for (Order ord : oList) {
                         System.out.println("Order ID: " + ord.getorderId());
                     }
-                    Customer cust1 = new Customer (customer1, number);
+                    Customer cust1 = new Customer(customer1, number);
                     cList.add(cust1);
                     break;
-                case MENU_CODE : Menu.listMenu(mList);
+                case MENU_CODE:
+                    Menu.listMenu(mList);
                     break;
-                case ORDE_CODE : //addOrders();
+                case ORDE_CODE: //addOrders();
                     Scanner orderTime = new Scanner(System.in);
+                    System.out.println("" +
+                            "╔╗\n" +
+                            "║║\n" +
+                            "║║\n" +
+                            "╚╝ Prices in menu are for small pizzas\n" +
+                            "╔╗ Medium pizzas are subject to a $0.50 price increase\n" +
+                            "╚╝ Large pizzas are subject to a $1.00 price increase\" ");
                     System.out.println("What would you like to order?");
                     String orderCust1 = orderTime.next().toLowerCase();
-                    double price = mList.get(0).getMenuPrice();
+                    //if (!orderCust1.equals(mList.get(1).getmenuItem())) {
+                     //   System.out.println("Retype order");
+                     //   orderCust1 = orderTime.next().toLowerCase();
+                    //} else {
+                     //   continue;
+
+
+
+                    //}
+
+                     double price = mList.get(0).getMenuPrice();
                     System.out.print("How many pizzas would you like: ");
                     int pizzaCount = orderTime.nextInt();
                     price = price * pizzaCount;
                     System.out.println("Total: " + price);
                     Order order1 = new Order(orderCust1,price);
                     oList.add(order1);
-                    break;
-                case TRAN_CODE : //listTransactions();
+                    //System.out.println("Would you like your food delivered?");
+                    System.out.println("Delivery is 6% of total price");
+                    String delvQues = orderTime.next().toLowerCase();
+                    double delvCharge = 0.06;
+                    double delvCharge1 = price * delvCharge;
+                    double totalPrice = price + delvCharge1;
+                    System.out.println("Total price is: " + totalPrice);
+
+
+                    case TRAN_CODE : //listTransactions();
                     Scanner cshoCrd = new Scanner(System.in);
                     System.out.println("Cash or Credit?");
                     String paymentTpe = cshoCrd.next().toLowerCase();
@@ -112,7 +141,13 @@ public class Main {
                         System.out.println("Payment Type: " + trans.getPaymentType());
                     }
                     break;
+
+
+
+
+
             }
+
             userAction = getAction(PROMPT_ACTION);
         }
     }
