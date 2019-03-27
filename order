@@ -1,5 +1,7 @@
 package com.company;
 
+//update order with delivery price and sales tax
+
 public class Order {
     //Class Level Variables - Protect the data
     private int orderId = 0;
